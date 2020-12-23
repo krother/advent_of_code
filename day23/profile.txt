@@ -1,0 +1,24 @@
+         41220603 function calls in 73.259 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000   73.259   73.259 {built-in method builtins.exec}
+        1    0.073    0.073   73.259   73.259 solve2.py:2(<module>)
+        4   17.512    4.378   73.186   18.296 solve2.py:72(play)
+ 10000210   12.882    0.000   27.978    0.000 solve2.py:37(find_dest)
+ 10000210   17.177    0.000   17.177    0.000 solve2.py:21(pick)
+ 10110035   15.074    0.000   15.074    0.000 solve2.py:27(find_chain)
+ 10000210    7.204    0.000    7.204    0.000 solve2.py:45(insert)
+        4    2.396    0.599    3.269    0.817 solve2.py:60(make_chain)
+  1000027    0.873    0.000    0.873    0.000 solve2.py:13(__init__)
+        4    0.044    0.011    0.044    0.011 {built-in method builtins.max}
+   109784    0.022    0.000    0.022    0.000 solve2.py:18(__bool__)
+      104    0.002    0.000    0.002    0.000 {built-in method builtins.print}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.__build_class__}
+        3    0.000    0.000    0.000    0.000 solve2.py:86(join)
+        3    0.000    0.000    0.000    0.000 solve2.py:50(concat)
+        1    0.000    0.000    0.000    0.000 solve2.py:11(Chain)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+
