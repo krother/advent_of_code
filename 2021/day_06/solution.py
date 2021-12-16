@@ -16,7 +16,7 @@ def solve(data, days=80):
     for _ in range(days):
         new = defaultdict(int)
         for age in fish:
-            if age == 0:Zoom is open to discuss Day 6: https://us02web.zoom.us/j/85658719454
+            if age == 0:
                 new[8] = fish[age]
                 new[6] += fish[age]
             else:
