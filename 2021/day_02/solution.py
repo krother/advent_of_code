@@ -1,4 +1,4 @@
-"""going deeper
+"""Going Deeper
 
 https://adventofcode.com/2021/day/2
 """

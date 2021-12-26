@@ -5,13 +5,7 @@ https://adventofcode.com/2021/day/3
 
 """
 import numpy as np
-
-    
-def parse(data):
-    lines = data.strip().split('\n')
-    bits = [list(map(int, row)) for row in lines]
-    a = np.array(bits)
-    return a
+from aoc import parse_2d_numbers
 
 
 def array_to_int(a):
@@ -20,7 +14,7 @@ def array_to_int(a):
  
 
 def solve(data):
-    a = parse(data)
+    a = parse_2d_numbers(data)
     count = a.sum(axis=0)
 
     gamma = (count > a.shape[0] / 2).astype(int)
@@ -31,39 +25,33 @@ def solve(data):
     return gamma * epsi
 
 
+def get_bits(bits, count, i, equal):
+    most_common = (count >= bits.shape[0] / 2).astype(int)
+    new = []
+    for b in bits:
+        if (b[i] == most_common[i]) == equal:
+            new.append(b)
+    bits = np.array(new)
+    return bits
+    
+
+def propagate_bits(a, equal):
+    bits = a.copy()
+    i = 0
+    while len(bits) > 1:
+        count = bits.sum(axis=0)
+        bits = get_bits(bits, count, i, equal)
+        i += 1
+    return bits
+
 
 def solve2(data):
-    a = parse(data)
-
-    bits = a.copy()
-    i = 0
-    while len(bits) > 1:
-        count = bits.sum(axis=0)
-        most_common = (count >= bits.shape[0] / 2).astype(int)
-        print(bits, most_common[i])
-        new = []
-        for b in bits:
-            if b[i] == most_common[i]:
-                new.append(b)
-        bits = np.array(new)
-        i += 1
-
+    a = parse_2d_numbers(data)
+    bits = propagate_bits(a, True)
     oxy = array_to_int(bits[0])
 
-    bits = a.copy()
-    i = 0
-    while len(bits) > 1:
-        count = bits.sum(axis=0)
-        most_common = (count >= bits.shape[0] / 2).astype(int)
-        new = []
-        for b in bits:
-            if b[i] != most_common[i]:
-                new.append(b)
-        bits = np.array(new)
-        i += 1
-
+    bits = propagate_bits(a, False)
     scrub = array_to_int(bits[0])
-    print(oxy, scrub)
     return oxy * scrub
 
 
