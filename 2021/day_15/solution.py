@@ -3,6 +3,7 @@
 https://adventofcode.com/2021/day/15
 
 """
+from aoc import PriorityQueue
 import numpy as np
 
 
@@ -179,17 +180,17 @@ def pop_task(pq):
 def dijkstra_heap(a):
     cost = get_max_cost_matrix(a)
 
-    q = []
+    pq = PriorityQueue()
     for pos in np.ndindex(a.shape):
-        add_task(q, pos, cost[pos])
+        pq.add_task(pos, cost[pos])
 
-    while q:
-        cheapest = pop_task(q)
+    while pq:
+        cheapest = pq.pop_task()
         for pos in find_adjacent_positions(a, cheapest):
             dist = cost[cheapest] + a[cheapest]
             if dist < cost[pos]:
                 cost[pos] = dist
-                add_task(q, pos, dist)
+                pq.add_task(pos, dist)
 
         if cheapest == (0, 0):
             break
@@ -231,8 +232,8 @@ def shortest_path(a):
     #cost = dijkstra(a)
 
     # variant C: great!
-    #cost = dijkstra_heap(a)
-    #return cost[0, 0]
+    cost = dijkstra_heap(a)
+    return cost[0, 0]
 
     # variant D: DP by cost
     return dp_by_cost(a)
