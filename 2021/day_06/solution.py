@@ -1,13 +1,15 @@
-"""title
+"""
+Lanternfish
 
 https://adventofcode.com/2021/day/6
 
 """
 from collections import Counter, defaultdict
+from aoc import parse_numbers
 
 
 def parse(data):
-    ages = list(map(int, data.strip().split(',')))
+    ages = parse_numbers(data)
     return Counter(ages)
 
 

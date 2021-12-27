@@ -1,17 +1,20 @@
-"""title
+"""
+Passage Pathing
 
 https://adventofcode.com/2021/day/12
 
 """
 from collections import defaultdict
+import re
+
 
 def parse(data):
     connections = defaultdict(list)
-    for line in data.strip().split('\n'):
-        a, b = line.split('-')
+    for a, b in re.findall(r'(\w+)-(\w+)', data):
         connections[a].append(b)
         connections[b].append(a)
     return connections
+
 
 def solve(data):
     connections = parse(data)
@@ -59,6 +62,7 @@ def solve2(data):
                 candidates.append((new_path, new_twice))
     
     return npaths
+
 
 if __name__ == '__main__':
     input_data = open('input_data.txt').read()

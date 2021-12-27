@@ -1,9 +1,11 @@
-"""Dumbo Octopus 11
+"""
+Dumbo Octopus
 
 https://adventofcode.com/2021/day/11
 
 """
 import numpy as np
+from aoc import parse_2d_numbers
 
 
 VECTORS = [(-1, -1), (-1, 0), (-1, +1), 
@@ -14,17 +16,13 @@ VECTORS = [(-1, -1), (-1, 0), (-1, +1),
 class Octopus:
 
     def __init__(self, data):
-        self.data = self.parse(data)
+        self.data = parse_2d_numbers(data)
         self.flashes = set()
         self.total_flashes = 0
 
     @property
     def number_of_flashes(self):
         return len(self.flashes)
-
-    def parse(self, data):
-        data = [list(map(int, row)) for row in data.strip().split('\n')]
-        return np.array(data)
 
     def adjacent(self, pos):
         y, x = pos

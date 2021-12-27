@@ -6,6 +6,7 @@ https://adventofcode.com/2021/day/5
 """
 import re
 from collections import defaultdict
+from aoc import parse_numbers
 
 
 class Vent:
@@ -48,8 +49,7 @@ class Vent:
 def parse(data, diagonal):
     vents = []
     for line in data.strip().split('\n'):
-        x1, y1, x2, y2 = map(int, re.findall(r"\d+", line))
-        v = Vent(x1, y1, x2, y2)
+        v = Vent(*parse_numbers(line))
         if diagonal or v.horizontal or v.vertical:
             vents.append(v)
     return vents
@@ -71,6 +71,8 @@ if __name__ == '__main__':
     input_data = open('input_data.txt').read()
     result = solve(input_data, False)
     print(f'Example 1: {result}')
+    # 4421
 
     result = solve(input_data, True)
     print(f'Example 2: {result}')
+    # 18674

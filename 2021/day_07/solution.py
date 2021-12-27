@@ -1,13 +1,11 @@
-"""Crabs
+"""
+Crabs
 
 https://adventofcode.com/2021/day/7
 
 """
 import numpy as np
-
-
-def parse(data):
-    return np.array(data.strip().split(',')).astype(int)
+from aoc import parse_numbers
 
 
 COST = {}
@@ -21,7 +19,7 @@ cost_func2 = np.frompyfunc(get_cost, 1, 1)
 
 
 def solve(data, cost_func=None):
-    crabs = parse(data).reshape(-1, 1)
+    crabs = np.array(parse_numbers(data)).reshape(-1, 1)
     targets = np.arange(min(crabs), max(crabs)+1)
     cost = np.abs(crabs - targets)
     if cost_func:
