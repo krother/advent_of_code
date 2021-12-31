@@ -14,6 +14,6 @@ Solutions to 2020 [Advent of Code](https://adventofcode.com/) tasks
 
 ## Reference
 
-(c) 2020 Dr. Kristian Rother
+(c) 2022 Dr. Kristian Rother
 
 Code usable under conditions of the MIT License. See LICENSE.TXT for details.
