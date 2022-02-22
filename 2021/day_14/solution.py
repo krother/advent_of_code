@@ -1,21 +1,25 @@
-"""Extended Polymerization
+"""
+Extended Polymerization
 
 https://adventofcode.com/2021/day/14
 
+Part I + II
 """
 import re
 from collections import defaultdict
 
 
 def parse(data):
+    """separate starting molecule from substitution rules"""
     start = data.strip().split('\n')[0]
     rules = dict(re.findall(r'(\w\w) -> (\w)', data))
     return start, rules
 
 def get_pair_count(seq):
+    """counts how many times each key occurs in a molecule"""
     pairs = defaultdict(int)
-    for i in range(len(seq)-1):
-        key = seq[i:i+2]
+    for i in pairwise range(len(seq)-1):  # sliding window of size 2
+        key = seq[i:i+2]                  # try itertools.pairwise (3.10)
         pairs[key] += 1
     return pairs
 
@@ -50,8 +54,8 @@ if __name__ == '__main__':
     input_data = open('input_data.txt').read()
     result = solve(input_data, 10)
     print(f'Example 1: {result}')
-    # 2345
+    assert result == 2345
 
     result = solve(input_data, 40)
     print(f'Example 2: {result}')
-    # 2432786807053
+    assert result == 2432786807053
