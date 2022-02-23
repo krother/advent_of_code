@@ -6,7 +6,7 @@ https://adventofcode.com/2021/day/14
 Part I : prepared for presentation at PyLadies
 """
 import re
-from collections import defaultdict, Counter
+from collections import Counter
 
 
 def parse(data):
@@ -37,7 +37,7 @@ def count_chars(molecule):
 def solve(data, iter):
     """Apply substitution iter times"""
     molecule, rules = parse(data)
-    for i in range(iter):
+    for _ in range(iter):
         molecule = step(molecule, rules)
     most, least = count_chars(molecule)
     return most - least

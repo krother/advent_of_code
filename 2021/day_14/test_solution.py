@@ -1,6 +1,5 @@
-import pytest
 
-from .solution import solve
+from .solution import solve, parse
 
 INPUT = """NNCB
 
@@ -28,3 +27,9 @@ def test_solve():
 
 def test_solve2():
     assert solve(INPUT, 40) == 2188189693529
+
+def test_parse():
+    """test for helper function"""
+    mol, rules = parse(INPUT)
+    assert mol == 'NNCB'
+    assert rules['CN'] == 'C'

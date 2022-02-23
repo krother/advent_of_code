@@ -27,6 +27,10 @@ def test_solve():
     """example copied from AoC site"""
     assert solve(INPUT, 10) == 1588
 
+def test_substitution():
+    """minimalistic test for a substitution"""
+    rules = {'NN': 'C'}
+    assert step("NN", rules) == "NCN"
 
 def test_parse():
     """test for helper function"""

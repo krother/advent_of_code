@@ -18,12 +18,13 @@ def parse(data):
 def get_pair_count(seq):
     """counts how many times each key occurs in a molecule"""
     pairs = defaultdict(int)
-    for i in pairwise range(len(seq)-1):  # sliding window of size 2
-        key = seq[i:i+2]                  # try itertools.pairwise (3.10)
+    for i in range(len(seq)-1):  # sliding window of size 2
+        key = seq[i:i+2]         # try itertools.pairwise (3.10)
         pairs[key] += 1
     return pairs
 
 def step(pairs, rules):
+    """updates the pair count dictionary once"""
     new = defaultdict(int)
     for key in pairs:
         new[key[0] + rules[key]] += pairs[key]
@@ -32,6 +33,7 @@ def step(pairs, rules):
 
 
 def count_chars(pairs, seq):
+    """returns a sorted list of character frequencies"""
     chars = defaultdict(int)
     for p in pairs:
         chars[p[0]] += pairs[p]
