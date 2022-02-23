@@ -3,6 +3,10 @@
 
 *by Kristian Rother*
 
+This cheat sheet was originally prepared for a talk at [PyLadies Hamburg](https://hamburg.pyladies.com/).
+
+[Download Talk Slides](talk/AoC.pdf)
+
 ----
 
 ## What is Advent of Code?
@@ -19,7 +23,7 @@
 
 ## What can you learn?
 
-* rehearse your coding fundamentals
+* rehearse coding fundamentals
 * understand requirements
 * decompose problems into smaller parts
 * estimate computational complexity
@@ -29,6 +33,8 @@
 ----
 
 ## Data Structures
+
+![](talk/data_structures2.png)
 
 The biggest step towards the solution is choosing a good data structure.
 All problems can be solved with standard Python data types: `list`, `dict`, `set`
@@ -41,6 +47,7 @@ Data structures that you will need for some of the challenges are:
 * tree
 * graph
 * 2D array
+
 
 ----
 
@@ -73,17 +80,19 @@ To learn more about algorithmics, I recommend [Algorithms by Robert Sedgewick an
 
 Some Python libraries I have used over and over in AoC:
 
-* re – essential to parse most inputs
-* numpy – fast arrays help with many challenges
-* deque – fast queue implementation (much faster than `list`)
-* heapq – for priority queues
-* itertools – iterable helpers like permutations, products etc.
+* `re`– essential to parse most inputs
+* `numpy` – fast arrays help with many challenges
+* `deque` – fast queue implementation (much faster than `list`)
+* `heapq` – for priority queues
+* `itertools` – iterable helpers like permutations, products etc.
 
 Careful with deepcopy (slow)
 
 ----
 
 ## Testing
+
+![](talk/unit_tests.png)
 
 I made heavy use of automated tests using `pytest`:
 
@@ -96,6 +105,8 @@ I made heavy use of automated tests using `pytest`:
 ----
 
 ## Team Up
+
+![](talk/team.png)
 
 AoC works great in teams with:
 
@@ -111,20 +122,25 @@ AoC works great in teams with:
 | time | what I do |
 |------|-----------|
 |  5:50 | get up |
+|  5:55 | coffee |
 |  5.59 | power-click refresh button |
-|  6:00 | start coding |
+|  6:00 | GO! |
 |  9:00 | call with AoC team (30' timebox) | 
 |  9:05 | review solutions of previous day |
 |  9:20 | exchange ideas for current day |
 |  ? | solve the challenge after 10 minutes to five days | 
 
+**Doing this for 25 days in a row is physically and mentally exhausting! You can hurt yourself!**
+
 ----
 
-## Energy management
+## Energy Management
 
-* Coding 25 days in a row is exhausting. 
-* Do not try to go as fast as possible.
+A better idea might be
+
 * Go slow and steady.
+* Do not try to go as fast as possible.
+* Do lots of refactoring and code cleanup
 * It is OK to stop at any point.
 * If you solve **one problem**, be proud of yourself already.
 
