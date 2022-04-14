@@ -1,3 +1,3 @@
 
 from aoc.priority_queue import PriorityQueue
-from aoc.parsers import parse_numbers, parse_2d_numbers
+from aoc.parsers import parse_numbers, parse_2d_numbers, parse_hash_grid

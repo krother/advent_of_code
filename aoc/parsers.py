@@ -15,3 +15,9 @@ def parse_2d_numbers(data):
     a = np.array(bits)
     return a
 
+def parse_hash_grid(data):
+    a = [
+        [1 if c == '#' else 0 for c in line]
+        for line in data.strip().split('\n')
+        ]
+    return np.array(a)
