@@ -9,6 +9,8 @@ from aoc import PriorityQueue
 
 ITEM = re.compile(r'\s(\d+)\s+(\d+)\s+(\d+)')
 
+SPELLS = ['missile', 'drain', 'recharge', 'poison', 'shield']
+
 
 class Boss:
 
@@ -36,6 +38,10 @@ class Wizard:
         self.armor = 0
         self.mana_used = 0
 
+        self.poison_cooldown = 0
+        self.shield_cooldown = 0
+        self.recharge_cooldown = 0
+
     def __repr__(self):
         return f"<{self.hp}; {self.mana}>"
 
@@ -43,7 +49,12 @@ class Wizard:
     def alive(self):
         return self.hp > 0 and self.mana >= 0
 
+    def die(self):
+        self.hp = -9999999999
+
     def pay(self, cost):
+        if self.mana < cost:
+            self.die()
         self.mana -= cost
         self.mana_used += cost
 
@@ -52,7 +63,9 @@ class Wizard:
         self.pay(53)
 
     def poison(self, boss):
-        boss.hp -= 18
+        if self.poison_cooldown:
+            self.die()
+        self.poison_cooldown = 6
         self.pay(173)
 
     def drain(self, boss):
@@ -60,29 +73,38 @@ class Wizard:
         self.hp += 2
         self.pay(73)
 
-    def shield(self):
+    def shield(self, boss):
+        if self.shield_cooldown:
+            self.die()
         self.armor += 7
+        self.shield_cooldown = 6
         self.pay(113)
 
-    def recharge(self):
-        self.mana += 101 * 5
+    def recharge(self, boss):
+        if self.recharge_cooldown:
+            self.die()
+        self.recharge_cooldown = 5
         self.pay(229)
 
-    def cast_spell(self, boss):
-        self.ongoing_effects()
-        ... cast
-        self.ongoing_effects()
+    def ongoing_effects(self, boss):
+        if self.shield_cooldown:
+            if self.shield_cooldown == 1:
+                self.armor = 0
+            self.shield_cooldown -= 1
+        
+        if self.poison_cooldown:
+            self.poison_cooldown -= 1
+            boss.hp -= 3
 
-        if self.hp == 1:
-            self.drain(boss)
-        elif self.mana < 500:
-            self.recharge()
-        elif boss.hp > 20:
-            self.poison(boss)
-        elif boss.damage >= self.hp:
-            self.shield()
-        else:
-            self.missile(boss)
+        if self.recharge_cooldown:
+            self.recharge_cooldown -= 1
+            self.mana += 101
+
+    def cast_spell(self, boss, spell):
+        self.ongoing_effects(boss)
+        f = getattr(self, spell)
+        f(boss)        
+        self.ongoing_effects(boss)
 
 
 def parse_boss(data):
@@ -90,7 +112,7 @@ def parse_boss(data):
     return Boss(hp, damage)
 
 
-def find_best_spells(wizard, boss):
+def find_best_spells(wizard, boss, hp_drain=0):
     """
     Searches a DAG of possible combat situations using the Dijkstra algorithm
     """
@@ -99,22 +121,26 @@ def find_best_spells(wizard, boss):
 
     while fights:
         wizard, boss = fights.pop_task()
-        if not wizard.alive:
-            return -1
         if not boss.alive:
             return wizard.mana_used
         
-        for sp in spells:
+        for sp in SPELLS:
             w = copy(wizard)
             b = copy(boss)
-            w.cast_spell(sp, b)
+            w.cast_spell(b, sp)
             b.hit(w)
-            fights.add_task((w, b), w.mana_used)
+            w.hp -= hp_drain
+            if w.alive:
+                fights.add_task((w, b), w.mana_used)
+        
+    return -1
     
 
 
-def solve(data):
-    ...
+def solve(data, hp_drain=0):
+    boss = parse_boss(data)
+    wizard = Wizard(50, 500)
+    return find_best_spells(wizard, boss, hp_drain)
 
 
 def solve2(data):
@@ -126,5 +152,5 @@ if __name__ == '__main__':
     result = solve(input_data)
     print(f'Example 1: {result}')
 
-    # result = solve2(input_data, SHOP)
-    # print(f'Example 2: {result}')
+    result = solve(input_data, 1)
+    print(f'Example 2: {result}')
