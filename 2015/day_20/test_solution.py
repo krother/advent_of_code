@@ -23,5 +23,11 @@ def test_count_presents(house, presents):
 def test_solve(house, presents):
     assert solve(presents) == house
 
-#def test_solve2():
-#    assert solve2(INPUT) == INPUT
+def test_solve_input():
+    assert solve(29_000_000) == 665280
+
+
+@pytest.mark.parametrize('house,presents', EXAMPLES)
+def test_solve2(house, presents):
+    assert solve2(presents) == house * 11 // 10
+

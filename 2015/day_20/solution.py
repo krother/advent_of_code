@@ -24,7 +24,7 @@ def solve(presents):
             print(house, count_presents(house))
 
 
-def solve(target):
+def _solve(target):
     house = 1
     bookings = defaultdict(set)
     while True:
@@ -42,11 +42,12 @@ def solve(target):
 
 def solve2(data):
     return data
-
+    
 
 if __name__ == '__main__':
     result = solve(29_000_000)
     print(f'Example 1: {result}')
+    # 665280
 
     #result = solve2(input_data)
     #print(f'Example 2: {result}')
