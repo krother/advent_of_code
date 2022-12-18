@@ -1,0 +1,80 @@
+Example 1: 5403290
+Example 2: 10291582906626
+         694546994 function calls (694546987 primitive calls) in 135.982 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000  135.982  135.982 {built-in method builtins.exec}
+        1    0.071    0.071  135.982  135.982 solution.py:1(<module>)
+        1    1.301    1.301  130.563  130.563 solution.py:56(solve2)
+  2906627    3.790    0.000  129.262    0.000 solution.py:45(merge_boundaries)
+  2906627   17.982    0.000  122.973    0.000 {built-in method builtins.sorted}
+ 87198810   23.461    0.000   98.157    0.000 solution.py:59(<genexpr>)
+ 84292183   32.847    0.000   74.696    0.000 solution.py:37(get_boundaries)
+ 92700160   24.095    0.000   34.382    0.000 solution.py:15(manhattan)
+269692503   14.490    0.000   14.490    0.000 {built-in method builtins.abs}
+ 84292183    6.834    0.000    6.834    0.000 solution.py:59(<lambda>)
+ 40528680    5.357    0.000    5.357    0.000 {built-in method builtins.max}
+        1    2.043    2.043    5.348    5.348 solution.py:18(solve)
+ 21620849    2.909    0.000    2.909    0.000 {built-in method builtins.min}
+  8407896    0.672    0.000    0.672    0.000 {method 'add' of 'set' objects}
+        1    0.131    0.131    0.131    0.131 {method 'difference' of 'set' objects}
+       60    0.000    0.000    0.000    0.000 solution.py:9(parse)
+       58    0.000    0.000    0.000    0.000 re.py:233(findall)
+       58    0.000    0.000    0.000    0.000 re.py:289(_compile)
+       58    0.000    0.000    0.000    0.000 {method 'findall' of 're.Pattern' objects}
+        1    0.000    0.000    0.000    0.000 sre_compile.py:759(compile)
+        1    0.000    0.000    0.000    0.000 sre_parse.py:939(parse)
+        1    0.000    0.000    0.000    0.000 sre_compile.py:598(_code)
+        1    0.000    0.000    0.000    0.000 sre_parse.py:435(_parse_sub)
+        1    0.000    0.000    0.000    0.000 sre_parse.py:493(_parse)
+        1    0.000    0.000    0.000    0.000 {built-in method io.open}
+       80    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+      3/1    0.000    0.000    0.000    0.000 sre_compile.py:71(_compile)
+        1    0.000    0.000    0.000    0.000 sre_compile.py:536(_compile_info)
+        1    0.000    0.000    0.000    0.000 {method 'read' of '_io.TextIOWrapper' objects}
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.print}
+       16    0.000    0.000    0.000    0.000 sre_parse.py:164(__getitem__)
+      3/1    0.000    0.000    0.000    0.000 sre_parse.py:174(getwidth)
+        2    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
+    29/26    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+        1    0.000    0.000    0.000    0.000 enum.py:977(__and__)
+        1    0.000    0.000    0.000    0.000 sre_compile.py:276(_optimize_charset)
+        1    0.000    0.000    0.000    0.000 codecs.py:319(decode)
+        2    0.000    0.000    0.000    0.000 sre_parse.py:355(_escape)
+        1    0.000    0.000    0.000    0.000 _bootlocale.py:33(getpreferredencoding)
+        4    0.000    0.000    0.000    0.000 sre_parse.py:254(get)
+        5    0.000    0.000    0.000    0.000 sre_parse.py:233(__next)
+        2    0.000    0.000    0.000    0.000 sre_compile.py:423(_simple)
+       27    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+        7    0.000    0.000    0.000    0.000 sre_parse.py:160(__len__)
+        1    0.000    0.000    0.000    0.000 codecs.py:309(__init__)
+        1    0.000    0.000    0.000    0.000 sre_parse.py:224(__init__)
+        2    0.000    0.000    0.000    0.000 enum.py:358(__call__)
+        3    0.000    0.000    0.000    0.000 sre_parse.py:286(tell)
+        2    0.000    0.000    0.000    0.000 {method 'strip' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {built-in method _locale.nl_langinfo}
+        1    0.000    0.000    0.000    0.000 {built-in method _codecs.utf_8_decode}
+        1    0.000    0.000    0.000    0.000 sre_compile.py:249(_compile_charset)
+        2    0.000    0.000    0.000    0.000 sre_parse.py:172(append)
+        1    0.000    0.000    0.000    0.000 sre_compile.py:461(_get_literal_prefix)
+        2    0.000    0.000    0.000    0.000 sre_compile.py:595(isstring)
+        1    0.000    0.000    0.000    0.000 sre_parse.py:923(fix_flags)
+        3    0.000    0.000    0.000    0.000 sre_parse.py:111(__init__)
+        1    0.000    0.000    0.000    0.000 codecs.py:260(__init__)
+        1    0.000    0.000    0.000    0.000 sre_compile.py:492(_get_charset_prefix)
+        2    0.000    0.000    0.000    0.000 enum.py:670(__new__)
+        1    0.000    0.000    0.000    0.000 {built-in method _sre.compile}
+        2    0.000    0.000    0.000    0.000 sre_parse.py:81(groups)
+        1    0.000    0.000    0.000    0.000 sre_parse.py:76(__init__)
+        1    0.000    0.000    0.000    0.000 {method 'find' of 'bytearray' objects}
+        3    0.000    0.000    0.000    0.000 sre_parse.py:249(match)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        3    0.000    0.000    0.000    0.000 {method 'get' of 'dict' objects}
+        2    0.000    0.000    0.000    0.000 sre_compile.py:453(_get_iscased)
+        2    0.000    0.000    0.000    0.000 sre_parse.py:168(__setitem__)
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.ord}
+        1    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+
+
