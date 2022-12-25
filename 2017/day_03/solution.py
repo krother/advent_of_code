@@ -3,6 +3,10 @@ Spiral Memory
 
 https://adventofcode.com/2017/day/3
 """
+from itertools import cycle
+
+from aoc.directions import UP, DOWN, LEFT, RIGHT, MOVES8
+
 
 
 def solve(n):
@@ -21,12 +25,42 @@ def solve(n):
         circle += 1
 
 
-def solve2(data):
-    return data
+def spiral():
+    """generates spiral coordinates"""
+    direction_gen = cycle([UP, RIGHT, DOWN, LEFT])
+    bearing = next(direction_gen)
+    next_bearing = None
+    x, y = 0, 0
+    visited = {(0, 0)}
+
+    while True:
+        dx, dy = bearing
+        x += dx
+        y += dy
+        yield x, y
+        visited.add((x, y))
+
+        # look around the corner
+        if next_bearing is None:
+            next_bearing = next(direction_gen)
+        xb, yb = next_bearing
+        if (x + xb, y + yb) not in visited: 
+            bearing = next_bearing
+            next_bearing = None
+
+
+def solve2(puzzle_input):
+    values = {(0, 0): 1}
+    for x, y in spiral():
+        result = sum([values.get((x + xv, y + yv), 0) for xv, yv in MOVES8])
+        values[(x, y)] = result
+        if result > puzzle_input:
+            return result
+        
 
 if __name__ == '__main__':
     result = solve(265149)
     print(f'Example 1: {result}')
 
-    #result = solve2(input_data)
-    #print(f'Example 2: {result}')
+    result = solve2(265149)
+    print(f'Example 2: {result}')
