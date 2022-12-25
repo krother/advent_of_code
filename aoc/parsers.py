@@ -20,4 +20,4 @@ def parse_hash_grid(data):
         [1 if c == '#' else 0 for c in line]
         for line in data.strip().split('\n')
         ]
-    return np.array(a)
+    return np.array(a, np.uint8)
