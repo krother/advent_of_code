@@ -1,0 +1,14 @@
+broadcaster -> xv
+%xv -> nd, CON2
+%nd -> dg
+%dg -> tm, CON2
+%tm -> mh
+%mh -> mk, CON2
+%mk -> pb
+%pb -> tp
+%tp -> pf, CON2
+%pf -> mf, CON2
+%mf -> gv, CON2
+%gv -> CON2, km
+%km -> CON2
+&CON2 -> pb, tm, rx, mk, xv, nd

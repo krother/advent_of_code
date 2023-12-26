@@ -1,0 +1,14 @@
+broadcaster -> kt
+%kt -> CON3, mt
+%mt -> CON3, zp
+%zp -> rc
+%rc -> hj
+%hj -> vc
+%vc -> CON3, hf
+%hf -> nm
+%nm -> dh, CON3
+%dh -> CON3, mc
+%mc -> CON3, lv
+%lv -> CON3, tg
+%tg -> CON3
+&CON3 -> hj, rc, kt, rx, zp, hf

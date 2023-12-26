@@ -1,0 +1,14 @@
+broadcaster -> rg
+%rg -> CON4, vq
+%vq -> bs, CON4
+%bs -> sc, CON4
+%sc -> mv
+%mv -> CON4, gl
+%gl -> kf
+%kf -> dx
+%dx -> ts
+%ts -> ng, CON4
+%ng -> CON4, lh
+%lh -> CON4, dl
+%dl -> CON4
+&CON4 -> kf, rx, sc, rg, gl, dx
