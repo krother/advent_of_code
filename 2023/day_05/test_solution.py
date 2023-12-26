@@ -1,5 +1,3 @@
-import pytest
-
 from solution import solve, solve2
 
 INPUT = """
@@ -38,15 +36,10 @@ humidity-to-location map:
 56 93 4
 """
 
+
 def test_solve():
     assert solve(INPUT) == 35
 
+
 def test_solve2():
     assert solve2(INPUT) == 46
-
-CONVERSIONS = [
-
-]
-
-@pytest.mark.parametrize('conversion', CONVERSIONS)
-def test_range_conversion(conversion):
