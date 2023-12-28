@@ -1,8 +1,3 @@
-"""
-Not Enough Minerals
-
-https://adventofcode.com/2022/day/19
-"""
 from collections import defaultdict
 from pprint import pprint
 from util import parse
@@ -22,7 +17,7 @@ class Candidate:
         clay=0,
         obs=0,
         geo=0,
-        plan="start",
+        plan="clay",
     ):
         self.blueprint = blueprint
         self.ore_bots = ore_bots
@@ -104,18 +99,23 @@ class Candidate:
         }[self.plan]()
 
     def get_new_plans(self, minute):
-        if minute == 1:
-            yield "start"
-            return
-        if self.obs_bots > 0 and minute >= 9:
+        # if minute == 1:
+        #    yield "start"
+        #    return
+        if self.obs_bots > 0 and minute >= 12:
             yield "geo"
-            if minute >= 22:
+            if minute >= 30:
                 return
-        if self.clay_bots <= 8 and minute <= 20:
+        if self.clay_bots < self.blueprint.obs_clay and minute <= 30 and self.clay < 40:
             yield "clay"
-        if self.ore_bots <= 4:
-            yield "ore"
-        if self.clay_bots > 0 and minute >= 4 and self.obs_bots <= 6:
+        # if self.ore_bots <= 4:
+        #    yield "ore"
+        if (
+            self.clay_bots > 0
+            and minute >= 4
+            and self.obs_bots <= self.blueprint.geo_obs
+            and self.obs < 40
+        ):
             yield "obs"
 
     def create_candidate(self, plan):
@@ -150,30 +150,57 @@ def propagate(candidates, minute):
     return new
 
 
-def eval_blueprint(time, start_candidate=None):
+def eval_blueprint(time, start_candidate=None, start_time=1):
     print()
     print(start_candidate.blueprint)
     candidates = [start_candidate]
-    for minute in range(1, time + 1):
+    for minute in range(start_time, time + 1):
         candidates = propagate(candidates, minute)
+        bestclay = max([cand.clay for cand in candidates])
+        bestobs = max([cand.obs for cand in candidates])
         bestgeo = max([cand.geo for cand in candidates])
-        print("minute:", minute, "best_geo:", bestgeo, "candidates:", len(candidates))
+        print(
+            f"minute: {minute:4}    max_geo: {bestgeo:3}    max_obs: {bestobs:3}    max_clay: {bestclay:3}    candidates: {len(candidates)}"
+        )
 
-    return max(cand.geo for cand in candidates) * start_candidate.blueprint.number
+    return max(cand.geo for cand in candidates)
 
 
-def solve(data, time=24, cutoff=None):
-    blueprints = parse(data)
-    if cutoff:
-        blueprints = blueprints[:cutoff]
-    score = 0
-    for bp in blueprints:
-        score += eval_blueprint(time, Candidate(bp))
-    return score
+def solve2(data, time):
+    """We start with pre-built ore bots"""
+    blueprints = parse(data)[:3]
+    # blueprint #1: first actions: ---R-R-
+    start = Candidate(
+        blueprints[0],
+        ore_bots=3,
+        ore=5,
+    )
+    a = eval_blueprint(time, start, start_time=8)
+    print(a)
+
+    # blueprint #2: first actions: --R-R
+    start = Candidate(
+        blueprints[1],
+        ore_bots=3,
+        ore=3,
+    )
+    b = eval_blueprint(time, start, start_time=6)
+    print(b)
+
+    # blueprint #3: first actions: ----R--R-
+    # MORE EFFICIENT THAN BUILDING A 4th ORE BOT
+    start = Candidate(
+        blueprints[2],
+        ore_bots=3,
+        ore=6,
+    )
+    c = eval_blueprint(time, start, start_time=10)
+    print(c)
+
+    return a * b * c
 
 
 if __name__ == "__main__":
     input_data = open("input_data.txt").read()
-    result = solve(input_data, time=24)
-    print(f"Solution part 1: {result}")
-    assert result == 1127
+    result = solve2(input_data, time=32)
+    print(f"Solution part 2: {result}")
