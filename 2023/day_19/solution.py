@@ -1,17 +1,15 @@
 """
-Aplenty
-
 https://adventofcode.com/2023/day/19
 """
+import ast
 import re
-from dataclasses import dataclass
-from functools import reduce
-from pprint import pprint
 from copy import deepcopy
+from functools import reduce
+
+from pydantic import BaseModel
 
 
-@dataclass
-class Condition:
+class Condition(BaseModel):
     property: str
     operator: str
     value: int
@@ -44,7 +42,7 @@ def parse(data):
     return rules, parts
 
 
-def solve(data):
+def solve(data: str):
     rules, parts = parse(data)
 
     total = 0
@@ -66,8 +64,7 @@ def solve(data):
     return total
 
 
-@dataclass
-class Partition:
+class Partition(BaseModel):
     wf: str
     min_values: dict[str, int]
     max_values: dict[str, int]
