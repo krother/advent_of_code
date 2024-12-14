@@ -33,13 +33,14 @@ def get_antinodes(grid, antpos):
             result.add((x, y))
     return result
 
+
 def get_antinodes2(grid, antpos):
     result = set()
     for (x1, y1), (x2, y2) in product(antpos, antpos):
         if (x1, y1) == (x2, y2):
             continue
-        dx = (x2 - x1)
-        dy = (y2 - y1)
+        dx = x2 - x1
+        dy = y2 - y1
         div = gcd(dx, dy)
         dx = dx // div
         dy = dy // div
@@ -63,10 +64,10 @@ def solve2(data):
     return solve(data, func=get_antinodes2)
 
 
-if __name__ == '__main__':
-    input_data = open('input_data.txt').read()
+if __name__ == "__main__":
+    input_data = open("input_data.txt").read()
     result = solve(input_data)
-    print(f'Example 1: {result}') # 369
+    print(f"Example 1: {result}")  # 369
 
     result = solve2(input_data)
-    print(f'Example 2: {result}') # 1169
+    print(f"Example 2: {result}")  # 1169

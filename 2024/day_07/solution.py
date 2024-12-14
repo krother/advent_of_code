@@ -22,7 +22,7 @@ def parse(data):
 
 
 def concat(a, b):
-    #return int(str(a) + str(b))
+    # return int(str(a) + str(b))
     # 30% faster but uglier:
     return a * 10 ** int(math.log(b, 10) + 1) + b
 
@@ -40,7 +40,7 @@ def check_equation(out, numbers, operators):
         if calc(start, tail, oplist) == out:
             return True
 
-    
+
 def solve(data, operators=(add, mul)):
     return sum(
         out
@@ -53,10 +53,10 @@ def solve2(data):
     return solve(data, operators=(add, mul, concat))
 
 
-if __name__ == '__main__':
-    input_data = open('input_data.txt').read()
+if __name__ == "__main__":
+    input_data = open("input_data.txt").read()
     result = solve(input_data)
-    print(f'Example 1: {result}')  # 1289579105366
+    print(f"Example 1: {result}")  # 1289579105366
 
     result = solve2(input_data)
-    print(f'Example 2: {result}')  # 92148721834692
+    print(f"Example 2: {result}")  # 92148721834692

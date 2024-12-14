@@ -18,7 +18,7 @@ class ChainedBlock:
 
     def __str__(self):
         return f"({self.file_id}, {self.size})"
-    
+
     @property
     def is_file(self):
         return self.file_id is not None
@@ -26,7 +26,7 @@ class ChainedBlock:
     @property
     def is_gap(self):
         return not self.is_file
-    
+
     def insert_after(self, new):
         new.prev = self
         new.next = self.next
@@ -51,10 +51,7 @@ def parse_chained_list(data: str) -> tuple[ChainedBlock, ChainedBlock]:
     file = True
     file_id = count()
     for c in data.strip():
-        new = ChainedBlock(
-            file_id=next(file_id) if file else None,
-            size=int(c)
-            )
+        new = ChainedBlock(file_id=next(file_id) if file else None, size=int(c))
         if not first:
             first = new
             last = new
@@ -120,18 +117,17 @@ def solve2(data):
                 head.prev.insert_after(new)
                 tail.file_id = None  # free old block
                 head.shrink(new.size)
-            
+
         tail = tail.prev
     return calc_checksum(first)
 
- 
 
-if __name__ == '__main__':
-    input_data = open('input_data.txt').read()
+if __name__ == "__main__":
+    input_data = open("input_data.txt").read()
     result = solve(input_data)
-    print(f'Example 1: {result}')
+    print(f"Example 1: {result}")
     assert result == 6607511583593
 
     result = solve2(input_data)
-    print(f'Example 2: {result}')
+    print(f"Example 2: {result}")
     assert result == 6636608781232

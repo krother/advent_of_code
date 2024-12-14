@@ -14,8 +14,10 @@ INPUT = """
 292: 11 6 16 20
 """
 
+
 def test_solve():
     assert solve(INPUT) == 3749
+
 
 def test_solve2():
     assert solve2(INPUT) == 11387

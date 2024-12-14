@@ -31,13 +31,16 @@ EXAMPLES = [
     ("1 3 2 3 4", 0, 1),
 ]
 
-@pytest.mark.parametrize('data,exp1,exp2', EXAMPLES)
-def test_single(data,exp1, exp2):
+
+@pytest.mark.parametrize("data,exp1,exp2", EXAMPLES)
+def test_single(data, exp1, exp2):
     assert solve(data) == exp1
     assert solve2(data) == exp2
 
+
 def test_solve():
     assert solve(INPUT) == 2
+
 
 def test_solve2():
     assert solve2(INPUT) == 6

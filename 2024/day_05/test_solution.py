@@ -33,13 +33,12 @@ INPUT = """
 97,13,75,29,47
 """
 
-EXAMPLES = [
-    (0, 0)
-]
+EXAMPLES = [(0, 0)]
 
-#@pytest.mark.parametrize('data,expected', EXAMPLES)
+# @pytest.mark.parametrize('data,expected', EXAMPLES)
 def test_solve():
     assert solve(INPUT) == 143
+
 
 def test_solve2():
     assert solve2(INPUT) == 123

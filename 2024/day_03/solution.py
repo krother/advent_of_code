@@ -5,6 +5,7 @@ https://adventofcode.com/2024/day/3
 """
 import re
 
+
 def solve(data):
     total = 0
     for a, b in re.findall(r"mul\((\d+),(\d+)\)", data):
@@ -25,10 +26,11 @@ def solve2(data):
             enabled = False
     return total
 
-if __name__ == '__main__':
-    input_data = open('input_data.txt').read()
+
+if __name__ == "__main__":
+    input_data = open("input_data.txt").read()
     result = solve(input_data)
-    print(f'Example 1: {result}')
+    print(f"Example 1: {result}")
 
     result = solve2(input_data)
-    print(f'Example 2: {result}')
+    print(f"Example 2: {result}")

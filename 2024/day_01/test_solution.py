@@ -11,8 +11,10 @@ INPUT = """
 3   3
 """
 
+
 def test_solve():
     assert solve(INPUT) == 11
+
 
 def test_solve2():
     assert solve2(INPUT) == 31
