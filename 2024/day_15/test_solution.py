@@ -1,4 +1,3 @@
-
 from solution import solve, solve2
 
 INPUT = """
@@ -48,8 +47,10 @@ INPUT2 = """
 
 <vv<<^^<<^^"""
 
+
 def test_solve():
     assert solve(INPUT) == 10092
+
 
 def test_solve2():
     assert solve2(INPUT) == 9021

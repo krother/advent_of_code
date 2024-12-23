@@ -1,4 +1,3 @@
-
 from solution import solve, solve2
 
 INPUT = """
@@ -29,8 +28,10 @@ INPUT = """
 2,0
 """
 
+
 def test_solve():
     assert solve(INPUT, size=7, n=12) == 22
+
 
 def test_solve2():
     assert solve2(INPUT, size=7, start=1) == "6,1"

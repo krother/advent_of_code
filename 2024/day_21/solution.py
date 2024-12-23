@@ -7,41 +7,29 @@ import re
 from pprint import pprint
 
 
-DOOR = [
-    "789",
-    "456",
-    "123",
-    "-0A"
-]
+DOOR = ["789", "456", "123", "-0A"]
 ROBOT = [
     "-^A",
     "<v>",
 ]
 
+
 def get_moves(pos, keypad, seq):
     """do not go back and forth ever"""
     x, y = pos
-    if (
-        y > 0
-        and keypad[y-1][x] != "-"
-        and re.fullmatch(r"[\<\>]*\^*", seq)
-    ):
+    if y > 0 and keypad[y - 1][x] != "-" and re.fullmatch(r"[\<\>]*\^*", seq):
         yield (x, y - 1), "^"
     if (
         y < len(keypad) - 1
-        and keypad[y+1][x] != "-"
+        and keypad[y + 1][x] != "-"
         and re.fullmatch(r"[\<\>]*v*", seq)
     ):
         yield (x, y + 1), "v"
-    if (
-        x > 0
-        and keypad[y][x-1] != "-"
-        and re.fullmatch(r"[\^v]*\<*", seq)
-    ):
+    if x > 0 and keypad[y][x - 1] != "-" and re.fullmatch(r"[\^v]*\<*", seq):
         yield (x - 1, y), "<"
     if (
         x < len(keypad[0]) - 1
-        and keypad[y][x+1] != "-"
+        and keypad[y][x + 1] != "-"
         and re.fullmatch(r"[\^v]*\>*", seq)
     ):
         yield (x + 1, y), ">"
@@ -116,15 +104,14 @@ def find_path_length(target, robots):
 
 
 class PathCalculator:
-
     def __init__(self, robots):
         self.robots = robots
         self.door_paths = get_shortest_paths(DOOR)
         self.robot_paths = get_shortest_paths(ROBOT)
         self.cache = {}
 
-    # <vA <A A >>^A vA A <^A >A <v<A >>^A vA ^A <vA >^A <v<A >^A >A A vA ^A <v<A >A >^A A A vA <^A >A 
-    #   v  < <    A  > >   ^  A    <    A  >  A   v   A    <   ^  A A  >  A    <  v   A A A  >   ^  A 
+    # <vA <A A >>^A vA A <^A >A <v<A >>^A vA ^A <vA >^A <v<A >^A >A A vA ^A <v<A >A >^A A A vA <^A >A
+    #   v  < <    A  > >   ^  A    <    A  >  A   v   A    <   ^  A A  >  A    <  v   A A A  >   ^  A
     #             <           A         ^     A       >           ^ ^     A           v v v         A
     #                         0               2                           9                         A
     def calc_moves(self, path, robot):
@@ -137,7 +124,7 @@ class PathCalculator:
         for p in path:
             if robot == 1:
                 # last robot
-                result += len(self.robot_paths[(start, p)][0]) # * 2 + 1
+                result += len(self.robot_paths[(start, p)][0])  # * 2 + 1
             else:
                 # recurse
                 candidates = []
@@ -145,8 +132,8 @@ class PathCalculator:
                     candidates.append(self.calc_moves(p2, robot - 1))
                 result += min(candidates)
             start = p
-        
-        #print(key, result)
+
+        # print(key, result)
         self.cache[key] = result
         return result
 
@@ -171,10 +158,10 @@ def solve(data, robots):
     return result
 
 
-if __name__ == '__main__':
-    input_data = open('input_data.txt').read()
+if __name__ == "__main__":
+    input_data = open("input_data.txt").read()
     result = solve(input_data, robots=2)
-    print(f'Example 1: {result}')  # 205160
+    print(f"Example 1: {result}")  # 205160
 
     result = solve(input_data, robots=25)
-    print(f'Example 2: {result}')
+    print(f"Example 2: {result}")

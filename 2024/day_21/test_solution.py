@@ -19,13 +19,22 @@ EXAMPLES = [
     ("379A", "<v<A>>^AvA^A<vA<AA>>^AAvA<^A>AAvA^A<vA>^AA<A>A<v<A>A>^AAAvA<^A>A"),
 ]
 
-@pytest.mark.parametrize('data,path', EXAMPLES)
+
+@pytest.mark.parametrize("data,path", EXAMPLES)
 def test_find_path(data, path):
     pc = PathCalculator(robots=2)
     assert pc.find_path_length(data) == len(path)
 
+
 def test_calc_complexity():
-    assert calc_complexity("029A", len("<vA<AA>>^AvAA<^A>A<v<A>>^AvA^A<vA>^A<v<A>^A>AAvA^A<v<A>A>^AAAvA<^A>A")) == 68 * 29
+    assert (
+        calc_complexity(
+            "029A",
+            len("<vA<AA>>^AvAA<^A>A<v<A>>^AvA^A<vA>^A<v<A>^A>AAvA^A<v<A>A>^AAAvA<^A>A"),
+        )
+        == 68 * 29
+    )
+
 
 def test_solve():
     assert solve(INPUT, robots=2) == 126384

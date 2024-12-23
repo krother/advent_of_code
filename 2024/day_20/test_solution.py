@@ -1,4 +1,3 @@
-
 from solution import solve
 
 INPUT = """
@@ -18,6 +17,7 @@ INPUT = """
 #...#...#...###
 ###############
 """
+
 
 def test_solve2():
     assert solve(INPUT, saving=10, cheat_length=2) == 10

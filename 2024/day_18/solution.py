@@ -14,7 +14,8 @@ def parse(data):
         x, y = map(int, line.split(","))
         coords.append((x, y))
     return coords
-                   
+
+
 def create_grid(size, coords):
     a = np.zeros(shape=(size, size), dtype=np.uint(8))
     for x, y in coords:
@@ -29,10 +30,11 @@ def get_next_positions(grid, pos):
         if is_on_grid(x=nx, y=ny, grid=grid):
             yield nx, ny
 
-                   
+
 def solve(data, size, n):
     coords = parse(data)
     return walk(coords[:n], size)
+
 
 def walk(coords, size):
     grid = create_grid(size, coords)
@@ -52,6 +54,7 @@ def walk(coords, size):
             if grid[ny, nx] == 0:
                 pq.add_task(((nx, ny), steps + 1), priority=steps + 1)
 
+
 def solve2(data, size):
     coords = parse(data)
     n = len(coords)
@@ -62,11 +65,11 @@ def solve2(data, size):
     return f"{x},{y}"
 
 
-if __name__ == '__main__':
-    input_data = open('input_data.txt').read()
+if __name__ == "__main__":
+    input_data = open("input_data.txt").read()
     result = solve(input_data, size=71, n=1024)
-    print(f'Example 1: {result}')
+    print(f"Example 1: {result}")
 
     result = solve2(input_data, size=71)
-    print(f'Example 2: {result}')
+    print(f"Example 2: {result}")
     assert result == "50,23"

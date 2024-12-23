@@ -45,6 +45,7 @@ def manhattan(a, b):
     bx, by = b
     return abs(ax - bx) + abs(ay - by)
 
+
 def solve(data, saving, cheat_length):
     grid, start, end = parse(data)
     path = get_path(grid, start, end)
@@ -62,10 +63,11 @@ def solve(data, saving, cheat_length):
             j += 1
     return cheats
 
-if __name__ == '__main__':
-    input_data = open('input_data.txt').read()
+
+if __name__ == "__main__":
+    input_data = open("input_data.txt").read()
     result = solve(input_data, saving=100, cheat_length=2)
-    print(f'Example 1: {result}')  # 1452
+    print(f"Example 1: {result}")  # 1452
 
     result = solve(input_data, saving=100, cheat_length=20)
-    print(f'Example 2: {result}')  # 999556
+    print(f"Example 2: {result}")  # 999556

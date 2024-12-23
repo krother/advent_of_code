@@ -25,14 +25,12 @@ class Box:
 
 
 class SmallBox(Box):
-    
     def can_be_moved(self, grid, move):
         newpos = get_next_position(self.positions[0], move)
         return grid.check_move(newpos, move)
 
 
 class BigBox(Box):
-
     def can_be_moved(self, grid, move):
         new1 = get_next_position(self.positions[0], move)
         new2 = get_next_position(self.positions[1], move)
@@ -40,14 +38,10 @@ class BigBox(Box):
             return grid.check_move(new2, move)
         elif new2 == self.positions[0]:
             return grid.check_move(new1, move)
-        return (
-            grid.check_move(new1, move) and 
-            grid.check_move(new2, move)
-        )
+        return grid.check_move(new1, move) and grid.check_move(new2, move)
 
 
 class Grid:
-
     def __init__(self, grid):
         self.walls = set()
         self.boxes = []
@@ -83,7 +77,7 @@ class Grid:
             if not box.can_be_moved(self, move):
                 return False
         return True
-    
+
     def push_boxes(self, pos, move):
         if pos in self.boxcache:
             box = self.boxcache[pos]
@@ -129,16 +123,18 @@ def solve(data):
 
 
 def solve2(data):
-    data = data.replace("#", "##").replace("O", "[]").replace(".", "..").replace("@", "@.")
+    data = (
+        data.replace("#", "##").replace("O", "[]").replace(".", "..").replace("@", "@.")
+    )
     return solve(data)
 
 
-if __name__ == '__main__':
-    input_data = open('input_data.txt').read()
+if __name__ == "__main__":
+    input_data = open("input_data.txt").read()
     result = solve(input_data)
-    print(f'Example 1: {result}')
+    print(f"Example 1: {result}")
     assert result == 1318523
 
     result = solve2(input_data)
-    print(f'Example 2: {result}')
+    print(f"Example 2: {result}")
     assert result == 1337648

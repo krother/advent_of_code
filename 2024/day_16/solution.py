@@ -18,10 +18,12 @@ def parse(data):
             end = x, y
     return grid, start, end
 
+
 def get_next_position(pos, heading):
     x, y = pos
     dx, dy = DIRECTIONS4[heading]
     return x + dx, y + dy
+
 
 def get_moves(grid, pos, heading, cost):
     # move forward
@@ -48,7 +50,7 @@ def solve(data):
         for pos, heading, cost in get_moves(grid, pos, heading, cost):
             pq.add_task((pos, heading, cost), priority=cost)
 
-    
+
 def solve2(data):
     grid, start, end = parse(data)
     pq = priority_queue.PriorityQueue()
@@ -79,10 +81,10 @@ def solve2(data):
     return len(path_dict[end])
 
 
-if __name__ == '__main__':
-    input_data = open('input_data.txt').read()
+if __name__ == "__main__":
+    input_data = open("input_data.txt").read()
     result = solve(input_data)
-    print(f'Example 1: {result}')  # 105508
+    print(f"Example 1: {result}")  # 105508
 
     result = solve2(input_data)
-    print(f'Example 2: {result}')  # not 561
+    print(f"Example 2: {result}")  # not 561
