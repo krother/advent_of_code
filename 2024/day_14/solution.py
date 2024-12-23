@@ -45,7 +45,7 @@ def solve2(data, xmax=101, ymax=103):
             x = (x + dx) % xmax
             y = (y + dy) % ymax
             robots[i] = (x, y, dx, dy)
-        if (seconds - 33) % 103 == 0 and (seconds - 68) % 101 == 0:
+        if seconds % 103 == 33 and seconds % 101 == 68:
             print(seconds)
             draw(robots)
             break
