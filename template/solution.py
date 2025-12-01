@@ -1,7 +1,7 @@
 """
 
 
-https://adventofcode.com/2024/day/
+https://adventofcode.com/2025/day/
 """
 from aoc import parse_2d_numbers, parse_hash_grid, parse_numbers, priority_queue, is_on_grid, DIRECTIONS4
 
